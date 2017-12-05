@@ -1,30 +1,54 @@
 package bo.components;
 
-public class Keyboard extends Thread {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-	public static final int EXECUTE_INFINITE = -1;
+public class Keyboard extends Thread{
 	
+	private BufferedReader in;
+	private boolean stopKeyboard;
 	private int numberOfLoops;
+	private int identifier;
 	
-	public Keyboard(int numberOfLoops) {
+	public Keyboard(int identifier) {
 		super();
-		this.numberOfLoops = numberOfLoops;
+		
+		this.identifier = identifier;
+		this.numberOfLoops = 0;
+		this.stopKeyboard = false;
+		this.in = new BufferedReader(new InputStreamReader(System.in));
 	}
 
 	public void run() {
-		System.out.println("Inicia Keyboard!");
+		System.out.println("Inicia Teclado!");
+		String line = "";
 		
-		while(getNumberOfLoops() == EXECUTE_INFINITE || getNumberOfLoops() > 0) {
+		try {
+			while(!this.stopKeyboard) {
+				line = in.readLine();
+				System.out.println("Usuário digitou algo: '" + line + "'.");
+				this.numberOfLoops++;
+			}
 			
+			this.in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
 	}
-
+	
+	public void stopKeyboard() {
+		this.stopKeyboard = true;
+	}
+	
 	public int getNumberOfLoops() {
-		return numberOfLoops;
+		return this.numberOfLoops;
 	}
 
-	public void setNumberOfLoops(int numberOfLoops) {
-		this.numberOfLoops = numberOfLoops;
+	public int getIdentifier() {
+		return this.identifier;
 	}
+	
 	
 }
