@@ -37,20 +37,15 @@ O `Processador (Processor)` sempre que lê/executa uma instrução, ele mostra a
 2. Valor inteiro (Integer)
 3. Vetor de instruções (ArrayList)
 
-#### Component Instruction
+> #### Component Instruction
+> Ao executar uma instrução `Component Instruction`, o processador pega e identifica para qual componente deve mandar e envia para o mesmo. Ele possui apenas uma instrução (até o momento):
+> 1. Disco (Disk)
 
-Ao executar uma instrução `Component Instruction`, o processador pega e identifica para qual componente deve mandar e envia para o mesmo. Ele possui apenas uma instrução (até o momento):
+> #### Integer
+> Ao executar uma instrução `Integer` apenas mostra a instrução junto ao seu valor na tela.
 
-1. Disco (Disk)
-
-#### Integer
-
-Ao executar uma instrução `Integer` apenas mostra a instrução junto ao seu valor na tela.
-
-#### ArrayList
-
-Ao executar uma instrução `ArrayList` ele entra diretamente no vetor e ja executa a primeira instrução do mesmo e as demais sequencialmente. Após terminar as instruções do vetor, volta ao fluxo normal.
-
+> #### ArrayList
+> Ao executar uma instrução `ArrayList` ele entra diretamente no vetor e ja executa a primeira instrução do mesmo e as demais sequencialmente. Após terminar as instruções do vetor, volta ao fluxo normal.
 
 ### Disco (Diks)
 
