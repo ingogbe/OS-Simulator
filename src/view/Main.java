@@ -12,6 +12,8 @@ import services.Time;
 
 public class Main {
 	
+	public static final boolean turnOff = false;
+	
 	public static Disk d;
 	public static Processor p;
 	public static Keyboard k;
@@ -39,8 +41,10 @@ public class Main {
 	}
 	
 	public static void turnOff(){
-		p.stopProcessor();
-		k.stopKeyboard();
-		d.stopDisk();
+		if(turnOff){
+			p.stopProcessor();
+			k.stopKeyboard();
+			d.stopDisk();
+		}
 	}
 }

@@ -1,6 +1,6 @@
 # OS-Simulator
 
-Descrição do problema [aqui](https://github.com/ingoguilherme/schedulingAlgorithms/tree/master/input_files).
+Descrição do problema [aqui](https://github.com/ingoguilherme/OS-Simulator/blob/master/example/TP2-SimulaSO.pdf).
 
 ## Ambiente usado para implementação e testes
 
@@ -47,13 +47,58 @@ O `Processador (Processor)` sempre que lê/executa uma instrução, ele mostra a
 > #### ArrayList
 > Ao executar uma instrução `ArrayList` ele entra diretamente no vetor e ja executa a primeira instrução do mesmo e as demais sequencialmente. Após terminar as instruções do vetor, volta ao fluxo normal.
 
-### Disco (Diks)
+### Disco (Disk)
 
 Como o disco possui tempo de execução maior que o do processador, quando ele é chamado pelo processador, o mesmo da um `up()` no semáforo do disco para manter esse controle, assim o disco executa todas as instruções passadas pelo processador no tempo dele, cada vez que executa uma, dando um `down()`.
 
 ### Teclado (Keyboard)
 
 Como o teclado é praticamente independente, executa e mostra sempre que o usuário inserir algum comando, ele não é executado pelo `Processador (Processor)`, apenas mostra na tela os dados inseridos pelo processador.
+
+## Exemplo de uso
+
+Para desligar o `OS-Simulator` depois de ler todas as intruções do processaor, troque a constante `turnOff` para `true`, ou caso não deseja encerar as threads ao acabar as instruções e sim parar manualmente a execução, deixe em `false`.
+
+```java
+public static final boolean turnOff = true;
+```
+
+> Observação: O teclado sempre espera alguma leitura, já que quando inicia ele já fica esperando essa leitura. caso o `turnOff` seja `true`, é necessário inserir alguma entrada no teclado após o processador ter encerrado.
+
+```java
+//Sempre inicializa para salvar o tempo inicial da execução do programar (as mensagens mostradas no console utilizam funções estáticas dessa classe, e requerem a inicialização para mostrar os dados corretos)
+new Time();
+		
+//Gera instruções aleatórias na memória (nessa exemplo está gerando entre 1 e 5 instruções aleatórias)
+LinkedList<Data> memory = Random.generateRandomDataList(Random.generateRandomInt(1, 5));
+
+//Cria semáforo do disco (disk)
+Semaphore diskSemaphore = new Semaphore(0);
+
+/*
+* Parâmetros do construtor do disco (disck):
+* (inteiro identificador, tempo que disco leva para executar uma instrução, semáforo do disco)
+*/
+d = new Disk(2, 2000, diskSemaphore);
+
+/*
+* Parâmetros do construtor do processador (processor):
+* (inteiro identificador, tempo que processador leva para executar uma instrução, vetor com as instruções, semáforo do disco)
+*/
+p = new Processor(1, 1000, memory, diskSemaphore);
+
+/*
+* Parâmetros do construtor do teclado (keyboard):
+* (inteiro identificador)
+*/
+k = new Keyboard(3);
+
+
+//Inicia todos os componentes criados anteriormente
+p.start();
+d.start();
+k.start();
+```
 
 ## Exemplo do formato de saída:
 
