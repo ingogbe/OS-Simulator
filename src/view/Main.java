@@ -1,27 +1,46 @@
 package view;
 
+import java.util.LinkedList;
+import java.util.concurrent.Semaphore;
+
 import bo.components.Disk;
 import bo.components.Keyboard;
 import bo.components.Processor;
-import services.RandomVector;
+import bo.data.Data;
+import services.Random;
+import services.Time;
 
 public class Main {
+	
+	public static Disk d;
+	public static Processor p;
+	public static Keyboard k;
+	
 	public static void main(String[] x) {
 		
-		int memory[] = RandomVector.generateRandomIntVector(20, 1, 10);
+		new Time();
 		
-		for(int m :memory) {
-			System.out.print(m + " ");
+		LinkedList<Data> memory = Random.generateRandomDataList(Random.generateRandomInt(1, 5));
+		for(Data d :memory) {
+			System.out.println(d);
 		}
-		System.out.println();
+		System.out.println("\n\n================");
 		
-		Processor p = new Processor(1, 1000);
-		Disk d = new Disk(2, 2000);
-		Keyboard k = new Keyboard(3);
+		Semaphore diskSemaphore = new Semaphore(0);
+		
+		d = new Disk(2, 2000, diskSemaphore);
+		p = new Processor(1, 1000, memory, diskSemaphore);
+		k = new Keyboard(3);
 		
 		p.start();
 		d.start();
 		k.start(); 
 		
+	}
+	
+	public static void turnOff(){
+		p.stopProcessor();
+		k.stopKeyboard();
+		d.stopDisk();
 	}
 }

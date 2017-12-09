@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import services.Time;
+
 public class Keyboard extends Thread{
 	
 	private BufferedReader in;
@@ -21,13 +23,16 @@ public class Keyboard extends Thread{
 	}
 
 	public void run() {
-		System.out.println("Inicia Teclado!");
+		printOnConsole("Inicia Teclado!");
+		skipConsoleLine();
+		
 		String line = "";
 		
 		try {
 			while(!this.stopKeyboard) {
 				line = in.readLine();
-				System.out.println("Usuário digitou algo: '" + line + "'.");
+				printOnConsole("Usuário digitou algo: '" + line + "'.");
+				skipConsoleLine();
 				this.numberOfLoops++;
 			}
 			
@@ -36,6 +41,14 @@ public class Keyboard extends Thread{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private void printOnConsole(String message){
+		System.out.println(Time.getExecutingTime() + " | KEYBOARD  | " + message);
+	}
+	
+	private void skipConsoleLine(){
+		System.out.println();
 	}
 	
 	public void stopKeyboard() {
