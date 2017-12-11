@@ -1,0 +1,16 @@
+# OS-Simulator
+
+Descrição do problema [aqui](https://github.com/ingoguilherme/OS-Simulator/blob/master/example/TP2-SimulaSO.pdf).
+
+Código pode ser acessado também por [aqui](https://github.com/ingoguilherme/OS-Simulator)
+
+## Integrantes
+
+1. Ingo Guilherme Both Eyng
+2. Jean Douglas Gomes Valencio
+
+## Referências
+
+1. https://stackoverflow.com/ (Dúvidas pontuais sobre implementação em Java)
+2. Roberta Lima Gomes. Sistemas operacionais. http://www.inf.ufes.br/rgomes/so.htm, 2016. Notas didáticas.
+3. Newton Spolaôr. Aula 5: entrada e saída.
