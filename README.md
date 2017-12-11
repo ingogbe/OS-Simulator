@@ -77,21 +77,20 @@ Semaphore diskSemaphore = new Semaphore(0);
 
 /*
 * Parâmetros do construtor do disco (disck):
-* (inteiro identificador, tempo que disco leva para executar uma instrução, semáforo do disco)
+* (tempo que disco leva para executar uma instrução, semáforo do disco)
 */
-d = new Disk(2, 2000, diskSemaphore);
+d = new Disk(2000, diskSemaphore);
 
 /*
 * Parâmetros do construtor do processador (processor):
-* (inteiro identificador, tempo que processador leva para executar uma instrução, vetor com as instruções, semáforo do disco)
+* (tempo que processador leva para executar uma instrução, vetor com as instruções, semáforo do disco)
 */
-p = new Processor(1, 1000, memory, diskSemaphore);
+p = new Processor(1000, memory, diskSemaphore);
 
 /*
-* Parâmetros do construtor do teclado (keyboard):
-* (inteiro identificador)
+* Construtor do teclado (keyboard):
 */
-k = new Keyboard(3);
+k = new Keyboard();
 
 
 //Inicia todos os componentes criados anteriormente
@@ -103,6 +102,9 @@ k.start();
 ## Exemplo do formato de saída:
 
 A saída é composta por 3 colunas cada linha:
+
+Os sleeps dentro de cada componente são executadas por primeiro para simular que a tarefa está sendo realizada, e logo após
+imprime a mensagem no console.
 
 1. A primeira coluna é o tempo em que foi executado em milisegundos, começando em 0 desde a execução do programa.
 2. A segunda coluna é o componente responsavel por essa mostrada na linha.

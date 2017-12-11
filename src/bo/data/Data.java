@@ -6,16 +6,20 @@ import services.Random;
 
 public class Data {
 	
+	//Tipos de instrução disponiveis
 	public static final String DATA_COMPONENT_INSTRUCTION = "Component Instruction";
 	public static final String DATA_INTEGER = "Integer";
 	public static final String DATA_ARRAYLIST = "ArrayList";
 	public static final String[] dataTypes = {DATA_COMPONENT_INSTRUCTION, DATA_INTEGER, DATA_ARRAYLIST};
 	
+	//Tipos de componentes disponiveis para a instrução
 	public static final String COMPONENT_INSTRUCTION_DISK = "Disk";
 	public static final String[] componentInstructions = {COMPONENT_INSTRUCTION_DISK};
 	
+	//Identificador de tipo de instrução
 	private String identifier;
 	
+	//Dado preenchido de acordo com o tipo da instrução
 	private String dataComponentInstruction;
 	private int dataInteger;
 	private LinkedList<Data> dataList;
@@ -25,15 +29,22 @@ public class Data {
 		
 		if(this.identifier.equals(DATA_COMPONENT_INSTRUCTION)){
 			this.dataComponentInstruction = Random.generateRandomComponentInstruction();
+			this.dataInteger = -1;
+			this.dataList = null;
 		}
 		else if(this.identifier.equals(DATA_INTEGER)){
 			this.dataInteger = Random.generateRandomInt(0,20);
+			this.dataList = null;
+			this.dataComponentInstruction = null;
 		}
 		else if(this.identifier.equals(DATA_ARRAYLIST)){
 			this.dataList = Random.generateRandomDataListWithoutLists(Random.generateRandomInt(1,10));
+			this.dataInteger = -1;
+			this.dataComponentInstruction = null;
 		}
 	}
 	
+	//Getters and Setters
 	public String getIdentifier(){
 		return this.identifier;
 	}
@@ -50,6 +61,7 @@ public class Data {
 		return this.dataList;
 	}
 
+	//Metodo toString personalizado para impressão das instruções de modo fácil de se entender no console
 	@Override
 	public String toString() {
 		String response = "";
