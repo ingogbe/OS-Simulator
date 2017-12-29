@@ -199,3 +199,10 @@ imprime a mensagem no console.
 32997 | KEYBOARD  | Usuário digitou algo: 'kk'.
 
 ```
+
+
+## TODO
+
+- [ ] Variável do processador `Program Counter` (PC) é um endereço para a lista (memória). Alterar para salvar índice da memória (i) ao invés de armazenar o objeto `Data` (instrução completa).
+- [ ] Aceitar múltiplos componentes do mesmo tipo e saber diferenciá-los
+

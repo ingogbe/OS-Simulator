@@ -33,6 +33,7 @@ public class Main {
 			System.out.println(d);
 		}
 		System.out.println("\n\n================");
+		//*/
 		
 		//Cria semáforo do disco (disk)
 		Semaphore diskSemaphore = new Semaphore(0);
